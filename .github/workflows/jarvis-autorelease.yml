@@ -1,0 +1,54 @@
+name: JARVIS – signiertes Auto-Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'release/request.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jarvis-autorelease
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'jonasgrossmann09-cpu/jarvis-releases'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Quellcode lesen
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python vorbereiten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Signaturbibliothek installieren
+        run: python -m pip install 'cryptography>=44,<50'
+      - name: Syntax, Quellcode und Signatur pruefen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JARVIS_CI_SIGNING_KEY: ${{ secrets.JARVIS_CI_SIGNING_KEY }}
+        run: python tools/build_release.py --repo "$GITHUB_REPOSITORY" --output dist
+      - name: Erst nach erfolgreichem Test veroeffentlichen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f dist/SKIP.txt ]]; then
+            echo "Kein neues Release: unveraenderter Code."
+            exit 0
+          fi
+          tag="$(cat dist/TAG.txt)"
+          version="${tag#v}"
+          gh release create "$tag" "dist/jarvis-${version}.zip" "dist/jarvis-update.json" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "J.A.R.V.I.S. ${version}" \
+            --notes-file dist/RELEASE_NOTES.md \
+            --latest
