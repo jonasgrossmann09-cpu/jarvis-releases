@@ -1,48 +1,84 @@
-name: JARVIS – signiertes Auto-Release
+name: JARVIS - Windows-Test und signiertes Release
 
 on:
   push:
     branches: [main]
     paths:
       - 'release/request.json'
-  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: jarvis-autorelease
   cancel-in-progress: false
 
 jobs:
-  release:
+  source-and-windows-smoke:
+    if: github.repository == 'jonasgrossmann09-cpu/jarvis-releases'
+    runs-on: windows-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: JARVIS-Module und Windows-Startimporte prüfen
+        run: python tools/check_windows.py --source src --runtime-import
+
+  release-builder-tests:
+    if: github.repository == 'jonasgrossmann09-cpu/jarvis-releases'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Test-Abhängigkeiten installieren
+        run: python -m pip install 'cryptography>=44,<50'
+      - name: Regressions- und Manipulationstests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Fehlende Module und kaputte Imports ausschließen
+        run: python tools/check_windows.py --source src
+
+  publish:
+    needs: [source-and-windows-smoke, release-builder-tests]
     if: github.repository == 'jonasgrossmann09-cpu/jarvis-releases'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write
     steps:
-      - name: Quellcode lesen
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Python vorbereiten
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
       - name: Signaturbibliothek installieren
         run: python -m pip install 'cryptography>=44,<50'
-      - name: Syntax, Quellcode und Signatur pruefen
+      - name: Signiertes Update erstellen und selbst prüfen
         env:
           GH_TOKEN: ${{ github.token }}
           JARVIS_CI_SIGNING_KEY: ${{ secrets.JARVIS_CI_SIGNING_KEY }}
         run: python tools/build_release.py --repo "$GITHUB_REPOSITORY" --output dist
-      - name: Erst nach erfolgreichem Test veroeffentlichen
+      - name: Nur bestandene Releases veröffentlichen
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           if [[ -f dist/SKIP.txt ]]; then
-            echo "Kein neues Release: unveraenderter Code."
+            echo "Quellcode bereits veröffentlicht – nichts zu tun."
             exit 0
           fi
           tag="$(cat dist/TAG.txt)"
