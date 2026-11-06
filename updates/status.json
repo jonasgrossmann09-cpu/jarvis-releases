@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "channel": "jarvis-community-patches",
+  "latest": {
+    "id": "pc-chat-2.1.3",
+    "version": "2.1.3",
+    "title": "PC-Fragen im Chat",
+    "status": "vorbereitet_nicht_signiert",
+    "description": "J.A.R.V.I.S. soll die Bildanzahl, Speicherplatz und Sortiervorschau direkt über Chat/Sprachbefehl abfragen können. Noch kein signiertes Release; nur ein Änderungshinweis.",
+    "released": false,
+    "release_page": "https://github.com/jonasgrossmann09-cpu/jarvis-releases/releases"
+  },
+  "note": "Nur Textinformationen. JARVIS installiert ausschließlich signierte Releases nach Zustimmung."
+}
