@@ -8,3 +8,4 @@
 Lokales Paket: `JARVIS_SICHERHEIT_SAMMELPAKET_02.zip` aus dieser Unterhaltung, SHA-256 `a69ed327a665a9b8c00b6c332383629bb0e8f3762f8744273d71ba504c606d7b`.
 
 Der aktuelle GitHub-Release-Kanal bleibt unverändert. Vor Integration muss die Sammlung mit der **tatsächlich installierten** J.A.R.V.I.S.-Version zusammengeführt und auf Windows getestet werden. Nicht eigenständig alte Sicherungen löschen.
+- Patch 03: Update-ZIP-Sicherheitsprüfung (ZIP-Metadaten, Spezialdateien, starke Kompression, Größen- und Syntaxkontrolle), 17 lokale Tests bestanden. [Details](patches/03-zip-validation.md). Gesamtsuite: 40 Tests bestanden. Noch keine Version 2.1.2 unter Windows geprüft.
