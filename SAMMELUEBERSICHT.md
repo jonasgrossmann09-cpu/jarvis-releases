@@ -23,6 +23,8 @@ Aktuell bereits separat veröffentlicht: **2.2.4** (Musikmodul). Die Punkte unte
 
 | 16 | Apps-Zugriffsverwaltung | Pro App Schalter für chat-/sprachgesteuerten Start; Spotify aktuelle/letzte Titel mit OAuth, globaler Windows-Medienzugriff, Freigaben widerrufen; 83 Offline-Tests | [Details](patches/16-app-zugriffsverwaltung.md) |
 
+**Aktuellster Apps-Stand:** [16B – drei erkannte Fehler korrigiert, 94 lokale Tests bestanden](patches/16b-apps-fehlerbehebung.md). Bei Integration Paket 16B statt 16 verwenden. Noch nicht installiert.
+
 ## Grenzen und offene Punkte
 - **Keine Installation oder gemeinsame Veröffentlichung bis zur ausdrücklichen Anweisung „Kodex-Auftrag“.**
 - Die echten Windows-Integrations- und Gesamttests sind noch offen, auch wenn einzelne Modultests bereits bestanden.
