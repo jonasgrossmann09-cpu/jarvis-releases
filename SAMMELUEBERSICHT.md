@@ -19,6 +19,8 @@ Aktuell bereits separat veröffentlicht: **2.2.4** (Musikmodul). Die Punkte unte
 
 | 11 | Gmail-Papierkorb | Werbung/Social-Mails nur nach Einzel-Auswahl und Bestätigung in den Papierkorb verschieben; wichtige/markierte Nachrichten geschützt; separater OAuth-Zugriff | [Details](patches/11-gmail-papierkorb.md) |
 
+| 12 | Dateisortierung per Gespräch | Jarvis fragt wie sortieren; thematisch zusammengehörige Dateien sammeln und nach Vorschau/Bestätigung als ZIP oder Ordner bündeln | [Details](patches/12-dialog-dateisortierung.md) |
+
 ## Grenzen und offene Punkte
 - **Keine Installation oder gemeinsame Veröffentlichung bis zur ausdrücklichen Anweisung „Kodex-Auftrag“.**
 - Die echten Windows-Integrations- und Gesamttests sind noch offen, auch wenn einzelne Modultests bereits bestanden.
@@ -27,4 +29,4 @@ Aktuell bereits separat veröffentlicht: **2.2.4** (Musikmodul). Die Punkte unte
 - Keine pauschalen „Zugriff auf alles“-Berechtigungen; zusätzliche Dienste nur mit tatsächlich vorhandenen Schnittstellen und klarer Nutzerfreigabe.
 - Versionsbasis und Release-Stand beim späteren Auftrag neu prüfen; nicht blind 2.2.4 überschreiben oder Sicherheitslisten erweitern.
 
-Bei „Kodex-Auftrag“: Alle Pakete 01–11 aus der Unterhaltung sammeln, mit der **aktuellen** installierten Version abgleichen, Backup erstellen, Konflikte klären, nur nötige Dateien ändern, alle Tests durchführen, signieren und **ein einziges** GitHub-Release veröffentlichen.
+Bei „Kodex-Auftrag“: Alle Pakete und Wünsche 01–12 aus der Unterhaltung sammeln, mit der **aktuellen** installierten Version abgleichen, Backup erstellen, Konflikte klären, nur nötige Dateien ändern, alle Tests durchführen, signieren und **ein einziges** GitHub-Release veröffentlichen.
