@@ -17,12 +17,14 @@ Aktuell bereits separat veröffentlicht: **2.2.4** (Musikmodul). Die Punkte unte
 | 09 | Apps/Windows-Programme | Apps-Kachel öffnet Übersicht nach Referenz mit 24 Logos, Suche, Filtern, Programminfo, zuletzt geöffnet und Start normaler installierter Apps | [Details](patches/09-windows-programme.md) |
 | 10 | Musikaktivität | Aktueller Windows-Medientitel; Spotify „läuft gerade“/„zuletzt gespielt“ nach eigener OAuth-Freigabe | [Details](patches/10-musikaktivitaet-spotify-windows.md) |
 
+| 11 | Gmail-Papierkorb | Werbung/Social-Mails nur nach Einzel-Auswahl und Bestätigung in den Papierkorb verschieben; wichtige/markierte Nachrichten geschützt; separater OAuth-Zugriff | [Details](patches/11-gmail-papierkorb.md) |
+
 ## Grenzen und offene Punkte
 - **Keine Installation oder gemeinsame Veröffentlichung bis zur ausdrücklichen Anweisung „Kodex-Auftrag“.**
 - Die echten Windows-Integrations- und Gesamttests sind noch offen, auch wenn einzelne Modultests bereits bestanden.
 - Spotify-Anmeldungen im Browser sind **nicht** gleichbedeutend mit API-Zugriff auf Hörverlauf. Dafür wird eine gesonderte Spotify-Freigabe benötigt.
-- Gmail-Löschen ist **nur ein Wunsch**, noch kein implementiertes Modul; später nur mit expliziter Bestätigung und Papierkorb statt permanent löschen.
+- Gmail-Papierkorb ist **als isoliertes Modul programmiert und mit Mocks getestet**, aber noch nicht in J.A.R.V.I.S. installiert und nicht mit einem echten Gmail-Konto geprüft.
 - Keine pauschalen „Zugriff auf alles“-Berechtigungen; zusätzliche Dienste nur mit tatsächlich vorhandenen Schnittstellen und klarer Nutzerfreigabe.
 - Versionsbasis und Release-Stand beim späteren Auftrag neu prüfen; nicht blind 2.2.4 überschreiben oder Sicherheitslisten erweitern.
 
-Bei „Kodex-Auftrag“: Alle Pakete aus der Unterhaltung sammeln, mit der **aktuellen** installierten Version abgleichen, Backup erstellen, Konflikte klären, nur nötige Dateien ändern, alle Tests durchführen, signieren und **ein einziges** GitHub-Release veröffentlichen.
+Bei „Kodex-Auftrag“: Alle Pakete 01–11 aus der Unterhaltung sammeln, mit der **aktuellen** installierten Version abgleichen, Backup erstellen, Konflikte klären, nur nötige Dateien ändern, alle Tests durchführen, signieren und **ein einziges** GitHub-Release veröffentlichen.
