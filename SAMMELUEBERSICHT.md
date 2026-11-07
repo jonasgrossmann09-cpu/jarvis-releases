@@ -21,6 +21,8 @@ Aktuell bereits separat veröffentlicht: **2.2.4** (Musikmodul). Die Punkte unte
 
 | 12 | Dateisortierung per Gespräch | Jarvis fragt wie sortieren; thematisch zusammengehörige Dateien sammeln und nach Vorschau/Bestätigung als ZIP oder Ordner bündeln | [Details](patches/12-dialog-dateisortierung.md) |
 
+| 16 | Apps-Zugriffsverwaltung | Pro App Schalter für chat-/sprachgesteuerten Start; Spotify aktuelle/letzte Titel mit OAuth, globaler Windows-Medienzugriff, Freigaben widerrufen; 83 Offline-Tests | [Details](patches/16-app-zugriffsverwaltung.md) |
+
 ## Grenzen und offene Punkte
 - **Keine Installation oder gemeinsame Veröffentlichung bis zur ausdrücklichen Anweisung „Kodex-Auftrag“.**
 - Die echten Windows-Integrations- und Gesamttests sind noch offen, auch wenn einzelne Modultests bereits bestanden.
